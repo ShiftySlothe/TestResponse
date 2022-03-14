@@ -1,0 +1,31 @@
+Structure
+
+Layout: 
+
+Overall container with width 100% for fully responsive
+Inside flex-grid layout component for overall layout, components responsive based on questio/answer text length
+
+
+<Container>
+<ContextProvider>
+<FLEX>
+<TITLE /> - Question title component
+<ANSWER OPTION>
+x num Answer options
+<SUCESS /> - displays answer correct / incorrect 
+</FlEX>
+<ContextProvider>
+</Container> 
+
+
+ANSWER OPTION: 
+    Flexes into a 1 column list if screen too small
+    Optional extra, turns into a drop down if there are more than 2/3 options/or a select?
+    Div behind text animated left/right on click 
+
+State and logic:
+    State managed by React useContext
+    Data provided by separate file
+    Data = Question { titleProp: string, answers: Answer[], allCorrect () => {}: bool}
+           Answer { answers: string[], isCorrect () => {}: bool}
+    

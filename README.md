@@ -9,3 +9,4 @@ Technical challenge to recreate a Figma component in React
 ## Next Steps
 
 - Testing
+- Could make it so that multiple choice questions work?
