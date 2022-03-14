@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { Text } from "@chakra-ui/react";
 import { Container } from "@chakra-ui/react";
 
+
 export default function MultiChoiceQ() {
   return (
     <Container
@@ -21,5 +22,3 @@ export default function MultiChoiceQ() {
     </Container>
   );
 }
-
-
