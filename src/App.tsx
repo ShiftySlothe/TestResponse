@@ -1,9 +1,10 @@
-import * as React from "react";
-import { ChakraProvider, theme } from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { ChakraProvider, Flex } from "@chakra-ui/react";
+import MultiChoiceQ from "./components/MultiChoiceQ";
 
 export const App = () => (
-  <ChakraProvider theme={theme}>
-    <div>Hello</div>
+  <ChakraProvider>
+    <Flex w="100vw" minH="100vh" alignItems="center" justifyContent="center">
+      <MultiChoiceQ />{" "}
+    </Flex>
   </ChakraProvider>
 );

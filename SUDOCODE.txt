@@ -8,12 +8,10 @@ Inside flex-grid layout component for overall layout, components responsive base
 
 <Container>
 <ContextProvider>
-<FLEX>
 <TITLE /> - Question title component
 <ANSWER OPTION>
 x num Answer options
 <SUCESS /> - displays answer correct / incorrect 
-</FlEX>
 <ContextProvider>
 </Container> 
 
