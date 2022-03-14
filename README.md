@@ -4,6 +4,7 @@ Technical challenge to recreate a Figma component in React
 
 ## Assumptions
 
+- The answer to the given question in no way reflect my personal opinion 🙋
 - Chakra UI Styling Libary used
 - Randomly selects 50% of questions to start correct/ incorrect
 - Cannot handle more than two options
