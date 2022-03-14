@@ -1,10 +1,11 @@
 import { ChakraProvider, Flex } from "@chakra-ui/react";
-import MultiChoiceQ from "./components/MultiChoiceQ";
+import Question from "./components/Question";
+import { question1 } from "./questionData";
 
 export const App = () => (
   <ChakraProvider>
     <Flex w="100vw" minH="100vh" alignItems="center" justifyContent="center">
-      <MultiChoiceQ />{" "}
+      <Question question={question1} />
     </Flex>
   </ChakraProvider>
 );

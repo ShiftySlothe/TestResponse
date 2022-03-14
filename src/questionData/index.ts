@@ -1,67 +1,19 @@
-import { Answers } from "../types";
+import { Question, SingleChoiceAnswer } from "../utils/Question";
 
-export class Question {
-  title: string;
-  answers: Answers;
+const q1title =
+  "If you had a magic want to change one thing about the world, what would you do?";
 
-  constructor(title: string, answers: Answers) {
-    this.title = title;
-    this.answers = answers;
-  }
+const a1data = [
+  "Eat the rich",
+  "Slowly influence positive change through peaceful democatic methods",
+];
 
-  allCorrect() {
-    let isCorrect = true;
-    this.answers.forEach((answer) => {
-      if (!answer.isCorrect()) {
-        isCorrect = false;
-      }
-    });
-    return isCorrect;
-  }
-}
+const answer1 = new SingleChoiceAnswer(a1data, 1);
 
-export class SingleChoiceAnswer {
-  answers: string[];
-  private correctAnswerIndex: number;
-  private selectedAnswerIndex: number;
+const a2data = ["Forefully bring about world peace", "Continue to allow war"];
 
-  constructor(answers: string[], correctAnswerIndex: number) {
-    this.answers = answers;
-    this.correctAnswerIndex = correctAnswerIndex;
-    this.selectedAnswerIndex = -1;
-  }
+const answer2 = new SingleChoiceAnswer(a2data, 0);
 
-  selectAnswer(index: number) {
-    this.selectedAnswerIndex = index;
-  }
+const answers = [answer1, answer2];
 
-  isCorrect() {
-    return this.correctAnswerIndex === this.selectedAnswerIndex;
-  }
-}
-
-export class MultiChoiceAnswer {
-  answers: string[];
-  private correctAnswerIndexs: number[];
-  private selectedAnswerIndexs: number[];
-
-  constructor(answers: string[], correctAnswerIndexs: number[]) {
-    this.answers = answers;
-    this.correctAnswerIndexs = correctAnswerIndexs;
-    this.selectedAnswerIndexs = [];
-  }
-
-  selectAnswer(index: number) {
-    //Only pushes unique items to array
-    if (this.selectedAnswerIndexs.indexOf(index) === -1)
-      this.selectedAnswerIndexs.push(index);
-  }
-
-  isCorrect() {
-    let isCorrect = true;
-    this.correctAnswerIndexs.forEach((index) => {
-      if (!this.selectedAnswerIndexs.includes(index)) isCorrect = false;
-    });
-    return isCorrect;
-  }
-}
+export const question1 = new Question(q1title, answers);

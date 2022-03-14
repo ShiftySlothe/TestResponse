@@ -1,13 +1,16 @@
-export type Question = {
+export type QuestionType = {
   title: string;
-  answers: Answers;
+  answers: AnswerType[];
   allCorrect: () => boolean;
 };
 
-export type Answers = Array<SingleChoiceAnswer | MultiChoiceAnswer>;
+export interface AnswerType {
+  answers: string[];
+  selectAnswer: (index: number) => void;
+  isCorrect: () => boolean;
+}
 
 export type SingleChoiceAnswer = {
-  answers: string[];
   correctAnswerIndex: number;
   selectedAnswerIndex: number;
   selectAnswer: (index: number) => void;
@@ -16,8 +19,8 @@ export type SingleChoiceAnswer = {
 
 export type MultiChoiceAnswer = {
   answers: string[];
-  correctAnswerIndex: number[];
-  selectedAnswerIndex: number;
+  correctAnswerIndexs: number[];
+  selectedAnswerIndexs: number[];
   selectAnswer: (index: number) => void;
   isCorrect: () => boolean;
 };
