@@ -1,26 +1,16 @@
 export type QuestionType = {
   title: string;
-  answers: AnswerType[];
+  answers: AnswerInterface[];
   allCorrect: () => boolean;
+  getNumberCorrect: () => number;
 };
 
-export interface AnswerType {
-  answers: string[];
+export interface AnswerInterface {
+  options: string[];
   selectAnswer: (index: number) => void;
   isCorrect: () => boolean;
+  getSelected: () => number | number[];
+  getCorrect: () => number | number[];
+  setStartCorrect: (bool: boolean) => void;
+  getStartCorrect: () => boolean;
 }
-
-export type SingleChoiceAnswer = {
-  correctAnswerIndex: number;
-  selectedAnswerIndex: number;
-  selectAnswer: (index: number) => void;
-  isCorrect: () => boolean;
-};
-
-export type MultiChoiceAnswer = {
-  answers: string[];
-  correctAnswerIndexs: number[];
-  selectedAnswerIndexs: number[];
-  selectAnswer: (index: number) => void;
-  isCorrect: () => boolean;
-};
