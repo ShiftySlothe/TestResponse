@@ -1,5 +1,6 @@
 import { AnswerInterface } from "./types";
 import { getHalfIndexesRandomly } from "./utils/getRandomHalfIndexs";
+import { shuffleArray } from "./utils/shuffleArray";
 
 export class Question {
   title: string;
@@ -9,6 +10,10 @@ export class Question {
     this.title = title;
     this.answers = answers;
     this.setSelected();
+  }
+
+  randomiseOrder() {
+    this.answers = shuffleArray(this.answers);
   }
 
   getNumberCorrect() {

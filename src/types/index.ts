@@ -1,6 +1,7 @@
 export type QuestionType = {
   title: string;
   answers: AnswerInterface[];
+  randomiseOrder: () => void;
   allCorrect: () => boolean;
   getNumberCorrect: () => number;
 };

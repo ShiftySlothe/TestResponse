@@ -20,6 +20,10 @@ interface QuestionProps {
   randomOrder?: boolean;
 }
 export default function Question({ question, randomOrder }: QuestionProps) {
+  if (randomOrder) {
+    question.randomiseOrder();
+  }
+
   const [allCorrect, setAllCorrect] = useState<boolean>(false);
   const [variableBGIndex, setVariableBGIndex] = useState(0);
   const variableBG = `linear(to-b, ${backgroundGradient.incorrect[variableBGIndex][0]}, ${backgroundGradient.incorrect[variableBGIndex][1]} )`;
