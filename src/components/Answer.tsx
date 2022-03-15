@@ -18,6 +18,8 @@ const answerStyles = {
 
 const animateToLeft50 = keyframes`from { left: 0; } to { left: 50%; transform: translateX(-100%);}`;
 const animateToLeft0 = keyframes`from { left: 50%; } to { left: 0; transform: translateX(100%);}`;
+const animateToBot50 = keyframes`from { left: 0; } to { left: 50%; transform: translateY(-100%);}`;
+const animateToBot0 = keyframes`from { bottom: 50%; } to { bottom: 0; transform: translateY(100%);}`;
 
 export function SingleChoiceAnswer({
   answer,
@@ -46,28 +48,36 @@ export function SingleChoiceAnswer({
   }, [answer, correctAnswerIndex]);
 
   // Sets starting key frame for animation
-  let keyFrameToSet: Keyframes;
+  let keyFrameToSetLg: Keyframes;
+  let keyFrameToSetSm: Keyframes;
   if (startingPos === "0") {
-    keyFrameToSet = animateToLeft0;
+    keyFrameToSetLg = animateToLeft0;
+    keyFrameToSetSm = animateToBot50;
   } else {
-    keyFrameToSet = animateToLeft50;
+    keyFrameToSetLg = animateToLeft50;
+    keyFrameToSetSm = animateToBot0;
   }
 
-  const [keyFrame, setKeyFrame] = useState<Keyframes | null>(null);
+  const [keyFrameLg, setKeyFrameLg] = useState<Keyframes | null>(null);
+  const [keyFrameSm, setKeyFrameSm] = useState<Keyframes | null>(null);
 
   const setAnimation = () => {
-    if (!keyFrame) {
-      setKeyFrame(keyFrameToSet);
-      if (keyFrameToSet === animateToLeft0) {
+    if (!keyFrameLg || !keyFrameSm) {
+      setKeyFrameLg(keyFrameToSetLg);
+      setKeyFrameSm(keyFrameToSetSm);
+      if (keyFrameToSetLg === animateToLeft0) {
         setStartingPos("50%");
       } else {
         setStartingPos("0");
       }
     } else {
-      setKeyFrame(
-        keyFrame === animateToLeft0 ? animateToLeft50 : animateToLeft0
+      setKeyFrameLg(
+        keyFrameLg === animateToLeft0 ? animateToLeft50 : animateToLeft0
       );
-      if (keyFrame === animateToLeft0) {
+      setKeyFrameSm(
+        keyFrameSm === animateToBot0 ? animateToBot50 : animateToLeft0
+      );
+      if (keyFrameLg === animateToLeft0) {
         setStartingPos("0");
       } else {
         setStartingPos("50%");
@@ -95,12 +105,16 @@ export function SingleChoiceAnswer({
         background={
           allCorrect ? answerStyles.toggleColor[1] : answerStyles.toggleColor[0]
         }
-        width="50%"
-        height="101%"
-        left={startingPos}
+        width={{ base: "100%", md: "50%" }}
+        height={{ base: "50%", md: "101%" }}
+        left={{ base: "", md: startingPos }}
+        bottom={{ base: startingPos, md: "" }}
         zIndex="0"
-        borderRadius="100px"
-        animation={keyFrame ? `${keyFrame} 5s linear` : ""}
+        borderRadius={{ base: "100px 100px 0px 0px", md: "100px" }}
+        animation={{
+          base: keyFrameSm ? `${keyFrameSm} 5s linear` : "",
+          md: keyFrameLg ? `${keyFrameLg} 5s linear` : "",
+        }}
       ></Box>
       {answer.options.map((option, i) => (
         <AnswerOption
